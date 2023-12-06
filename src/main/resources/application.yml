@@ -1,0 +1,7 @@
+server:
+  error:
+    include-binding-errors: on_param
+
+logging:
+  level:
+    org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver: ERROR
