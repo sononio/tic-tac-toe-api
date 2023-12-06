@@ -80,7 +80,7 @@ public class PlayerController {
             @ApiResponse(responseCode = "204", description = "Ход был совершен"),
             @ApiResponse(responseCode = "400", description = "Ход совершен некорректно")
     })
-    @PutMapping("{id}/game/turn")
+    @PostMapping("{id}/game/turn")
     public ResponseEntity<Void> move(
             @PathVariable @NotNull UUID id,
             @RequestBody @Valid CoordsDto coordsDto) {
