@@ -46,11 +46,13 @@ public class LongPollingService {
 
         while (ChronoUnit.MILLIS.between(start, LocalDateTime.now()) <= timeout
                 && !endPolling.test(gameService.get(gameId))) {
-            waitForUpdate(gameId, timeout);
+            waitForUpdate(gameId, timeout - ChronoUnit.MILLIS.between(start, LocalDateTime.now()));
         }
     }
 
     private void waitForUpdate(UUID uuid, long timeout) {
+        timeout = Math.max(timeout, 10);
+
         val lock = lockRegistry.getLock(uuid);
         synchronized (lock) {
             try {
