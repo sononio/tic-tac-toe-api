@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -40,6 +41,14 @@ public class Game {
 
     public int getCurrentTurn() {
         return turnHistory.size() + 1;
+    }
+
+    public Optional<Turn> getLastTurn() {
+        if (turnHistory.isEmpty()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(turnHistory.get(turnHistory.size() - 1));
     }
 
     private void changeField(Side side, int x, int y) {
